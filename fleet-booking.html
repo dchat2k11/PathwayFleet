@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pathway Fleet LLC</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Pathway Fleet LLC</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#booking">Book a Car</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h2>Reliable Rideshare Car Rentals</h2>
+    <p>Rent cars weekly for Uber & Lyft drivers with insurance options.</p>
+    <a href="#booking" class="btn">Book a Car Now</a>
+  </section>
+
+  <!-- Fleet Section -->
+  <section id="fleet">
+    <h2>Our Fleet</h2>
+    <div class="car-list">
+      <div class="car animate animate-left" data-car="Toyota Corolla 2020">
+        <img src="images/car1.jpg" alt="Toyota Corolla 2020">
+        <h3>Toyota Corolla 2020</h3>
+        <p>Weekly Rate: $250</p>
+        <button class="btn select-car">Book This Car</button>
+      </div>
+
+      <div class="car animate animate-right" data-car="Honda Civic 2019">
+        <img src="images/car2.jpg" alt="Honda Civic 2019">
+        <h3>Honda Civic 2019</h3>
+        <p>Weekly Rate: $240</p>
+        <button class="btn select-car">Book This Car</button>
+      </div>
+
+      <!-- Add more cars here -->
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking">
+    <h2>Book Your Car</h2>
+    <form id="bookingForm" class="animate animate-pop">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="carSelect">Select Car:</label>
+      <select id="carSelect" name="car" required>
+        <option value="Toyota Corolla 2020">Toyota Corolla 2020</option>
+        <option value="Honda Civic 2019">Honda Civic 2019</option>
+        <!-- Add more cars here -->
+      </select>
+
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" required>
+
+      <label for="weeks">Number of Weeks:</label>
+      <input type="number" id="weeks" name="weeks" min="1" value="1" required>
+
+      <label>
+        <input type="checkbox" id="insurance" name="insurance">
+        Include Insurance ($50/week)
+      </label>
+
+      <div id="totalCost" style="margin-top:10px;font-weight:bold;"></div>
+
+      <button type="submit" class="btn">Submit Booking</button>
+    </form>
+
+    <div id="confirmation" style="margin-top:20px;font-weight:bold;"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Pathway Fleet LLC | <a href="mailto:info@pathwayfleetllc.com">info@pathwayfleetllc.com</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

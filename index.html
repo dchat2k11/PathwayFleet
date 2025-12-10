@@ -3,38 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pathway Fleet LLC</title>
+  <title>Pathway Fleet LLC - Fleet & Booking</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
     <h1>Pathway Fleet LLC</h1>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="fleet.html">Fleet</a>
-      <a href="booking.html">Book a Car</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#booking">Book a Car</a>
     </nav>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section id="hero">
       <h2>Reliable Rideshare Car Rentals</h2>
-      <p>Rent cars weekly for Uber & Lyft drivers with insurance options.</p>
-      <a href="booking.html" class="btn">Book a Car Now</a>
+      <p>Rent cars weekly for Uber & Lyft drivers with insurance included.</p>
+      <a href="#fleet" class="btn">See Our Fleet</a>
     </section>
 
-    <section id="features">
-      <h3>Why Choose Us?</h3>
-      <ul>
-        <li>Flexible weekly rentals</li>
-        <li>Insurance included</li>
-        <li>Easy online booking</li>
-      </ul>
+    <!-- Fleet Section -->
+    <section id="fleet">
+      <h2>Our Fleet</h2>
+      <div class="car-list">
+        <article class="car">
+          <img src="images/car1.jpg" alt="Toyota Corolla 2020">
+          <h3>Toyota Corolla 2020</h3>
+          <p>Weekly Rate: $250</p>
+          <button class="btn select-car" data-car="Toyota Corolla 2020">Book This Car</button>
+        </article>
+
+        <article class="car">
+          <img src="images/car2.jpg" alt="Honda Civic 2019">
+          <h3>Honda Civic 2019</h3>
+          <p>Weekly Rate: $240</p>
+          <button class="btn select-car" data-car="Honda Civic 2019">Book This Car</button>
+        </article>
+
+        <!-- Add more cars as needed -->
+      </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking">
+      <h2>Book Your Car</h2>
+      <form id="bookingForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="carSelect">Select Car:</label>
+        <select id="carSelect" name="car" required>
+          <option value="Toyota Corolla 2020">Toyota Corolla 2020</option>
+          <option value="Honda Civic 2019">Honda Civic 2019</option>
+          <!-- Add more cars dynamically if needed -->
+        </select>
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+
+        <label for="weeks">Number of Weeks:</label>
+        <input type="number" id="weeks" name="weeks" min="1" value="1" required>
+
+        <label>
+          <input type="checkbox" id="insurance" name="insurance">
+          Include Insurance ($50/week)
+        </label>
+
+        <div id="totalCost" style="margin-top:10px;font-weight:bold;">Total: $0</div>
+
+        <button type="submit" class="btn">Submit Booking</button>
+      </form>
+
+      <div id="confirmation" style="margin-top:20px;font-weight:bold;"></div>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Pathway Fleet LLC | <a href="mailto:info@pathwayfleetllc.com">info@pathwayfleetllc.com</a></p>
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

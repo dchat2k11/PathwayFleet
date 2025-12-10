@@ -1,182 +1,335 @@
-/* Reset some default styles */
-* {
-  box-sizing: border-box;
+/* =========================
+   Fonts
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@400;700&display=swap');
+
+/* =========================
+   Global Styles
+========================= */
+body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background: linear-gradient(160deg, #111 0%, #1c1c1c 100%);
+  color: #eee;
+  overflow-x: hidden;
 }
 
-/* Body styling */
-body {
-  background-color: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Header */
+/* =========================
+   Header
+========================= */
 header {
-  background-color: #0b3d91; /* Deep blue */
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
+  background: #111;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #ff4d4d;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 header h1 {
-  margin-bottom: 10px;
+  font-family: 'Oswald', sans-serif;
   font-size: 2em;
+  color: #ff4d4d;
+  text-shadow: 1px 1px 6px #000;
 }
 
-header nav a {
-  color: #fff;
+nav a {
+  color: #eee;
+  margin-left: 20px;
   text-decoration: none;
-  margin: 0 15px;
   font-weight: bold;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
 }
 
-header nav a:hover {
-  color: #ffd700; /* Gold on hover */
+nav a:hover {
+  color: #39ff14; /* neon green pop */
+  text-shadow: 0 0 8px #39ff14;
 }
 
-/* Main content */
-main {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Hero section */
+/* =========================
+   Hero Section
+========================= */
 #hero {
   text-align: center;
-  margin-bottom: 40px;
+  padding: 80px 20px;
+  background: url('../images/street-bg.jpg') center/cover no-repeat;
+  border-bottom: 3px solid #ff4d4d;
+  position: relative;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  top:0; left:0;
+  width: 100%; height:100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+#hero h2, #hero p, #hero .btn {
+  position: relative;
+  z-index: 1;
 }
 
 #hero h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
+  font-size: 2.5em;
+  color: #ff4d4d;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px #000;
 }
 
 #hero p {
   font-size: 1.2em;
-  margin-bottom: 20px;
+  color: #ccc;
+  margin-bottom: 30px;
 }
 
-.btn {
-  display: inline-block;
-  background-color: #0b3d91;
+#hero .btn {
+  background: #ff4d4d;
   color: #fff;
-  padding: 12px 25px;
+  padding: 18px 30px;
+  font-size: 1.2em;
+  border-radius: 6px;
+  box-shadow: 0 0 20px #ff4d4d;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: 0.4s ease;
 }
 
-.btn:hover {
-  background-color: #ffd700;
-  color: #000;
+#hero .btn:hover {
+  background: #ff1a1a;
+  box-shadow: 0 0 30px #ff1a1a, 0 0 40px #ff4d4d inset;
+  transform: scale(1.05);
 }
 
-/* Features section */
-#features ul {
-  list-style-type: disc;
-  margin-left: 20px;
-  margin-top: 10px;
+/* =========================
+   Fleet Section
+========================= */
+#fleet {
+  padding: 50px 20px;
+  background: #121212;
+  border-top: 3px solid #ff4d4d;
+  border-bottom: 3px solid #39ff14;
 }
 
-/* Fleet Section */
-#cars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+#fleet h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2em;
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 6px #000;
+}
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .car {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
+  background: #1e1e1e;
+  border: 2px solid #ff4d4d;
+  padding: 20px;
+  width: 260px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.car:hover {
+  transform: translateY(-8px) rotateZ(-1deg);
+  box-shadow: 0 0 25px #ff4d4d, 0 0 35px #39ff14 inset;
 }
 
 .car img {
   width: 100%;
   height: auto;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.car:hover img {
+  transform: scale(1.05);
 }
 
 .car h3 {
-  margin-bottom: 5px;
+  margin: 10px 0;
+  color: #ff4d4d;
+  font-size: 1.2em;
 }
 
 .car p {
-  font-weight: bold;
-  margin-bottom: 10px;
+  color: #ccc;
 }
 
-/* Booking Form */
+.car .btn {
+  background: #ff4d4d;
+  color: #fff;
+  padding: 12px 18px;
+  margin-top: 10px;
+  display: inline-block;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.car .btn:hover {
+  background: #ff1a1a;
+  box-shadow: 0 0 20px #ff1a1a, 0 0 25px #39ff14 inset;
+  transform: scale(1.05);
+}
+
+/* =========================
+   Booking Section
+========================= */
+#booking {
+  background: #111;
+  padding: 50px 20px;
+  border-top: 3px solid #39ff14;
+}
+
+#booking h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2em;
+  color: #39ff14;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 6px #000;
+}
+
 form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #39ff14;
+  box-shadow: 0 0 15px #39ff14 inset;
 }
 
 form label {
   display: block;
   margin-top: 15px;
-  margin-bottom: 5px;
+  color: #ccc;
   font-weight: bold;
 }
 
 form input, form select {
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #222;
+  color: #eee;
+  transition: all 0.3s ease;
 }
 
-form input[type="checkbox"] {
-  width: auto;
-  margin-right: 10px;
+form input:focus, form select:focus {
+  border-color: #39ff14;
+  box-shadow: 0 0 10px #39ff14;
+  outline: none;
 }
 
 form button {
   margin-top: 20px;
-  width: 100%;
+  padding: 14px 25px;
+  background: #39ff14;
+  color: #111;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #39ff14;
+  transition: all 0.3s ease;
 }
 
-/* Footer */
-footer {
-  background-color: #0b3d91;
-  color: #fff;
+form button:hover {
+  background: #1aff00;
+  box-shadow: 0 0 30px #39ff14, 0 0 40px #fff inset;
+  transform: scale(1.05);
+}
+
+#totalCost, #confirmation {
   text-align: center;
-  padding: 15px 0;
-  margin-top: 40px;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #39ff14;
+  text-shadow: 1px 1px 4px #000;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  border-top: 3px solid #ff4d4d;
 }
 
 footer a {
-  color: #ffd700;
+  color: #ff4d4d;
   text-decoration: none;
 }
 
 footer a:hover {
-  text-decoration: underline;
+  text-shadow: 0 0 8px #ff4d4d;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.5em;
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+  .car-list {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .btn {
-    padding: 10px 20px;
+  header {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  #cars {
-    grid-template-columns: 1fr;
+  #hero h2 {
+    font-size: 2em;
   }
+
+  #booking h2, #fleet h2 {
+    font-size: 1.8em;
+  }
+}
+/* =========================
+   Scroll Animations
+========================= */
+.animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-left {
+  transform: translateX(-100px);
+}
+
+.animate-right {
+  transform: translateX(100px);
+}
+
+.animate-pop {
+  transform: scale(0.8);
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1);
 }
