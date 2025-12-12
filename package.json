@@ -1,0 +1,23 @@
+{
+  "name": "pathwayfleet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dchat2k11/PathwayFleet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dchat2k11/PathwayFleet/issues"
+  },
+  "homepage": "https://github.com/dchat2k11/PathwayFleet#readme",
+  "dependencies": {
+    "googleapis": "^168.0.0"
+  }
+}
