@@ -3,88 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pathway Fleet LLC - Fleet & Booking</title>
+  <title>Pathway Fleet LLC - Rideshare Rentals</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Header -->
   <header>
     <h1>Pathway Fleet LLC</h1>
     <nav>
+      <a href="#hero">Home</a>
       <a href="#fleet">Fleet</a>
-      <a href="#booking">Book a Car</a>
+      <a href="#booking">Book</a>
+      <a href="#faq">FAQ</a>
+      <a href="#terms">Terms</a>
     </nav>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section id="hero">
-      <h2>Reliable Rideshare Car Rentals</h2>
-      <p>Rent cars weekly for Uber & Lyft drivers with insurance included.</p>
-      <a href="#fleet" class="btn">See Our Fleet</a>
-    </section>
+  <!-- Hero Section -->
+  <section id="hero">
+    <h2>Drive for Uber & Lyft with Confidence</h2>
+    <p>Weekly rentals with insurance included. Flexible, reliable, and ready for rideshare drivers.</p>
+    <a href="#fleet" class="btn">See Fleet</a>
+  </section>
 
-    <!-- Fleet Section -->
-    <section id="fleet">
-      <h2>Our Fleet</h2>
-      <div class="car-list">
-        <article class="car">
-          <img src="images/car1.jpg" alt="Toyota Corolla 2020">
-          <h3>Toyota Corolla 2020</h3>
-          <p>Weekly Rate: $250</p>
-          <button class="btn select-car" data-car="Toyota Corolla 2020">Book This Car</button>
-        </article>
-
-        <article class="car">
-          <img src="images/car2.jpg" alt="Honda Civic 2019">
-          <h3>Honda Civic 2019</h3>
-          <p>Weekly Rate: $240</p>
-          <button class="btn select-car" data-car="Honda Civic 2019">Book This Car</button>
-        </article>
-
-        <!-- Add more cars as needed -->
+  <!-- Fleet Section -->
+  <section id="fleet">
+    <h2>Our Fleet</h2>
+    <div class="fleet-container">
+      <div class="fleet-card" data-class="Economy">
+        <img src="images/economy.jpg" alt="Economy Class">
+        <h3>Economy</h3>
+        <p>Starting at $300/week</p>
+        <button class="btn book-class">Book Economy</button>
       </div>
-    </section>
+      <div class="fleet-card" data-class="Standard">
+        <img src="images/standard.jpg" alt="Standard Class">
+        <h3>Standard</h3>
+        <p>Starting at $350/week</p>
+        <button class="btn book-class">Book Standard</button>
+      </div>
+    </div>
+  </section>
 
-    <!-- Booking Form Section -->
-    <section id="booking">
-      <h2>Book Your Car</h2>
-      <form id="bookingForm">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required>
+  <!-- Booking Section -->
+  <section id="booking">
+    <h2>Book Your Vehicle</h2>
+    <form id="bookingForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
 
-        <label for="carSelect">Select Car:</label>
-        <select id="carSelect" name="car" required>
-          <option value="Toyota Corolla 2020">Toyota Corolla 2020</option>
-          <option value="Honda Civic 2019">Honda Civic 2019</option>
-          <!-- Add more cars dynamically if needed -->
-        </select>
+      <label for="vehicleClass">Vehicle Class:</label>
+      <select id="vehicleClass" name="vehicleClass" required>
+        <option value="Economy">Economy</option>
+        <option value="Standard">Standard</option>
+      </select>
 
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" name="startDate" required>
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" required>
 
-        <label for="weeks">Number of Weeks:</label>
-        <input type="number" id="weeks" name="weeks" min="1" value="1" required>
+      <label for="weeks">Number of Weeks:</label>
+      <input type="number" id="weeks" name="weeks" min="1" value="1" required>
 
-        <label>
-          <input type="checkbox" id="insurance" name="insurance">
-          Include Insurance ($50/week)
-        </label>
+      <label>
+        <input type="checkbox" id="insurance" name="insurance">
+        Include Insurance ($50/week)
+      </label>
 
-        <div id="totalCost" style="margin-top:10px;font-weight:bold;">Total: $0</div>
+      <div id="totalCost"></div>
 
-        <button type="submit" class="btn">Submit Booking</button>
-      </form>
+      <button type="submit" class="btn">Book Now</button>
+    </form>
+    <div id="confirmation" class="popup"></div>
+  </section>
 
-      <div id="confirmation" style="margin-top:20px;font-weight:bold;"></div>
-    </section>
-  </main>
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <h3>Do you include insurance?</h3>
+      <p>Yes, you can add optional rideshare insurance for $50/week.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there a mileage limit?</h3>
+      <p>No, unlimited mileage is included for all drivers.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Vehicle requirements?</h3>
+      <p>Vehicles meet Uber & Lyft standards for 4-door sedans with current registration.</p>
+    </div>
+  </section>
 
+  <!-- Terms Section -->
+  <section id="terms">
+    <h2>Terms & Conditions</h2>
+    <p>All rentals require upfront payment. Drivers are responsible for following local rideshare regulations. Damage or accidents are the responsibility of the renter. Unlimited mileage included.</p>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Pathway Fleet LLC | <a href="mailto:info@pathwayfleetllc.com">info@pathwayfleetllc.com</a></p>
   </footer>

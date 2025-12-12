@@ -9,10 +9,14 @@ exports.handler = async (event) => {
       };
     }
 
-    // Parse booking data
     const booking = JSON.parse(event.body);
 
-    // Authenticate Google Sheets API
+    // Calculate end date
+    const startDate = new Date(booking.startDate);
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + (parseInt(booking.weeks) * 7));
+
+    // Authenticate Google Sheets
     const auth = new google.auth.JWT(
       process.env.GOOGLE_CLIENT_EMAIL,
       null,
@@ -22,18 +26,17 @@ exports.handler = async (event) => {
 
     const sheets = google.sheets({ version: "v4", auth });
 
-    // Prepare row data
+    // Prepare new row
     const newRow = [
-      new Date().toISOString(), // Timestamp
+      new Date().toISOString(),       // Timestamp
       booking.name,
       booking.email,
       booking.phone,
-      booking.car,
+      booking.vehicleClass,
       booking.startDate,
-      booking.endDate,
-      booking.weeks,
+      endDate.toISOString().split('T')[0],
       booking.insurance ? "Yes" : "No",
-      booking.totalPrice
+      booking.total
     ];
 
     // Append row to Google Sheet
@@ -48,14 +51,15 @@ exports.handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify({
         message: "Booking saved successfully!",
-        booking: booking,
+        booking,
       }),
     };
-  } catch (error) {
-    console.error("Error saving booking:", error);
+
+  } catch (err) {
+    console.error("Error saving booking:", err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Error saving booking", error: error.message }),
+      body: JSON.stringify({ message: "Error saving booking", error: err.message }),
     };
   }
 };
