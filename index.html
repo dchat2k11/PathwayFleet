@@ -1,115 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pathway Fleet LLC - Rideshare Rentals</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathway Fleet LLC | Weekly Rideshare Leasing</title>
+  <meta name="description" content="Apply for weekly rideshare vehicle leasing. Driver applications flow into our qualification system." />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>Pathway Fleet LLC</h1>
-    <nav>
-      <a href="#hero">Home</a>
-      <a href="#fleet">Fleet</a>
-      <a href="#booking">Book</a>
-      <a href="#faq">FAQ</a>
-      <a href="#terms">Terms</a>
-    </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <h2>Drive for Uber & Lyft with Confidence</h2>
-    <p>Weekly rentals with insurance included. Flexible, reliable, and ready for rideshare drivers.</p>
-    <a href="#fleet" class="btn">See Fleet</a>
-  </section>
+<header class="header">
+  <h1>Pathway Fleet LLC</h1>
+  <nav>
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#apply">Apply</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
 
-  <!-- Fleet Section -->
-  <section id="fleet">
-    <h2>Our Fleet</h2>
-    <div class="fleet-container">
-      <div class="fleet-card" data-class="Economy">
-        <img src="images/economy.jpg" alt="Economy Class">
-        <h3>Economy</h3>
-        <p>Starting at $300/week</p>
-        <button class="btn book-class">Book Economy</button>
-      </div>
-      <div class="fleet-card" data-class="Standard">
-        <img src="images/standard.jpg" alt="Standard Class">
-        <h3>Standard</h3>
-        <p>Starting at $350/week</p>
-        <button class="btn book-class">Book Standard</button>
-      </div>
+<section class="hero">
+  <h2>Weekly Vehicle Leasing for Rideshare Drivers</h2>
+  <p>Flexible weekly terms built for Uber & Lyft drivers.</p>
+  <div class="notice">
+    Now accepting driver applications — vehicles matched as availability opens.
+  </div>
+  <a href="#apply" class="btn">Apply Now</a>
+</section>
+
+<section id="how">
+  <h2>How It Works</h2>
+  <ol>
+    <li>Apply online</li>
+    <li>We review and pre-qualify</li>
+    <li>Vehicle matched when available</li>
+    <li>Weekly payments begin at activation</li>
+  </ol>
+</section>
+
+<section id="pricing">
+  <h2>Estimated Weekly Pricing</h2>
+  <p>Pricing varies by vehicle class and availability.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Economy</h3>
+      <p>$275–$325 / week</p>
     </div>
-  </section>
-
-  <!-- Booking Section -->
-  <section id="booking">
-    <h2>Book Your Vehicle</h2>
-    <form id="bookingForm">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required>
-
-      <label for="vehicleClass">Vehicle Class:</label>
-      <select id="vehicleClass" name="vehicleClass" required>
-        <option value="Economy">Economy</option>
-        <option value="Standard">Standard</option>
-      </select>
-
-      <label for="startDate">Start Date:</label>
-      <input type="date" id="startDate" name="startDate" required>
-
-      <label for="weeks">Number of Weeks:</label>
-      <input type="number" id="weeks" name="weeks" min="1" value="1" required>
-
-      <label>
-        <input type="checkbox" id="insurance" name="insurance">
-        Include Insurance ($50/week)
-      </label>
-
-      <div id="totalCost"></div>
-
-      <button type="submit" class="btn">Book Now</button>
-    </form>
-    <div id="confirmation" class="popup"></div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <h3>Do you include insurance?</h3>
-      <p>Yes, you can add optional rideshare insurance for $50/week.</p>
+    <div class="price-card">
+      <h3>Standard</h3>
+      <p>$325–$400 / week</p>
     </div>
-    <div class="faq-item">
-      <h3>Is there a mileage limit?</h3>
-      <p>No, unlimited mileage is included for all drivers.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Vehicle requirements?</h3>
-      <p>Vehicles meet Uber & Lyft standards for 4-door sedans with current registration.</p>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Terms Section -->
-  <section id="terms">
-    <h2>Terms & Conditions</h2>
-    <p>All rentals require upfront payment. Drivers are responsible for following local rideshare regulations. Damage or accidents are the responsibility of the renter. Unlimited mileage included.</p>
-  </section>
+<section id="apply">
+  <h2>Driver Application</h2>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Pathway Fleet LLC | <a href="mailto:info@pathwayfleetllc.com">info@pathwayfleetllc.com</a></p>
-  </footer>
+  <form
+    name="driver-application"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+  >
+    <input type="hidden" name="form-name" value="driver-application" />
+    <input type="hidden" name="Application Status" value="New" />
 
-  <script src="js/main.js"></script>
+    <p hidden>
+      <label>Don’t fill this out: <input name="bot-field" /></label>
+    </p>
+
+    <label>Full Name</label>
+    <input type="text" name="Full Name" required />
+
+    <label>Email</label>
+    <input type="email" name="Email" required />
+
+    <label>Phone Number</label>
+    <input type="tel" name="Phone Number" required />
+
+    <label>City / Metro Area</label>
+    <input type="text" name="City / Metro" required />
+
+    <label>Rideshare Platform</label>
+    <select name="Rideshare Platform" required>
+      <option value="Uber">Uber</option>
+      <option value="Lyft">Lyft</option>
+      <option value="Both">Uber & Lyft</option>
+    </select>
+
+    <label>When do you need a vehicle?</label>
+    <select name="Timeframe Needed" required>
+      <option value="ASAP">ASAP</option>
+      <option value="1–2 Weeks">1–2 Weeks</option>
+      <option value="30+ Days">30+ Days</option>
+    </select>
+
+    <label>Weekly Budget Range</label>
+    <select name="Weekly Budget Range" required>
+      <option value="$250–300">$250–300</option>
+      <option value="$300–350">$300–350</option>
+      <option value="$350–450">$350–450</option>
+    </select>
+
+    <label class="checkbox">
+      <input type="checkbox" required />
+      I understand this is a waitlist application and vehicle availability is limited.
+    </label>
+
+    <button type="submit" class="btn">Submit Application</button>
+  </form>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <p><strong>Is this a rental or lease?</strong><br />Weekly lease for rideshare use.</p>
+  <p><strong>Is insurance included?</strong><br />Details provided at matching.</p>
+  <p><strong>Is there a long-term contract?</strong><br />No — weekly only.</p>
+</section>
+
+<footer>
+  <p>© 2025 Pathway Fleet LLC</p>
+  <p>
+    <a href="mailto:info@pathwayfleetllc.com">info@pathwayfleetllc.com</a>
+  </p>
+</footer>
+
+<!-- External JS -->
+<script src="js/main.js"></script>
 </body>
 </html>
