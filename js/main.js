@@ -1,95 +1,110 @@
 // ==============================
-// Pathway Fleet LLC - JS
+// Pathway Fleet LLC - Fleet & Booking JS (FIXED)
 // ==============================
 
-// Example rates per class
+// Vehicle weekly rates
 const classRates = {
-  "Economy": 300,
-  "Standard": 350
+  Economy: 300,
+  Standard: 350
 };
 
 // DOM Elements
 const bookingForm = document.getElementById("bookingForm");
-const vehicleClass = document.getElementById("vehicleClass");
+const carSelect = document.getElementById("carSelect");
 const weeksInput = document.getElementById("weeks");
 const insuranceCheckbox = document.getElementById("insurance");
 const totalCostDiv = document.getElementById("totalCost");
 const confirmationDiv = document.getElementById("confirmation");
 const startDateInput = document.getElementById("startDate");
+const fleetButtons = document.querySelectorAll(".select-car");
 
-// Fleet buttons preselect
-document.querySelectorAll(".book-class").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const selectedClass = btn.closest(".fleet-card").dataset.class;
-    vehicleClass.value = selectedClass;
-    document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+// ==============================
+// Fleet → Booking auto-fill
+// ==============================
+fleetButtons.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const vehicleClass = e.target.closest(".fleet-card").dataset.class;
+    carSelect.value = vehicleClass;
     updateTotal();
+    document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
   });
 });
 
-// Calculate total cost
+// ==============================
+// Calculate Total (FIXED)
+// ==============================
+function calculateTotal() {
+  const selectedClass = carSelect.value;
+  const weeks = Number(weeksInput.value) || 1;
+  const insuranceCost = insuranceCheckbox.checked ? 50 * weeks : 0;
+
+  return (classRates[selectedClass] * weeks) + insuranceCost;
+}
+
+// Update Total Display
 function updateTotal() {
-  const selectedClass = vehicleClass.value;
-  const weeks = parseInt(weeksInput.value) || 1;
-  const insurance = insuranceCheckbox.checked ? 50 : 0;
-  const total = classRates[selectedClass] * weeks + insurance;
+  const total = calculateTotal();
   totalCostDiv.textContent = `Total: $${total}`;
 }
 
-// Update total on input changes
-vehicleClass.addEventListener("change", updateTotal);
+// Event listeners
+carSelect.addEventListener("change", updateTotal);
 weeksInput.addEventListener("input", updateTotal);
 insuranceCheckbox.addEventListener("change", updateTotal);
 
-// Initial total display
+// Initial display
 updateTotal();
 
 // ==============================
-// Booking Form Submission
+// Booking Form Submission (FIXED)
 // ==============================
 bookingForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // Basic validation
+  if (!startDateInput.value) {
+    confirmationDiv.textContent = "Please select a start date.";
+    confirmationDiv.style.color = "red";
+    return;
+  }
+
   const formData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    vehicleClass: vehicleClass.value,
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    vehicleClass: carSelect.value,
     startDate: startDateInput.value,
-    weeks: weeksInput.value,
+    weeks: Number(weeksInput.value),
     insurance: insuranceCheckbox.checked,
-    total: classRates[vehicleClass.value] * parseInt(weeksInput.value) + (insuranceCheckbox.checked ? 50 : 0)
+    total: calculateTotal()
   };
+
+  confirmationDiv.textContent = "Submitting booking...";
+  confirmationDiv.style.color = "#0ff";
 
   try {
     const response = await fetch("/.netlify/functions/booking-form", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData)
     });
 
     const result = await response.json();
 
-    if (response.ok) {
-      confirmationDiv.textContent = "Booking received! Check your email for confirmation.";
-      confirmationDiv.style.display = "block";
-      confirmationDiv.style.background = "#0f0c29";
-      confirmationDiv.style.color = "#fff";
-      confirmationDiv.style.padding = "15px";
-      confirmationDiv.style.borderRadius = "10px";
-      bookingForm.reset();
-      updateTotal();
-    } else {
-      confirmationDiv.textContent = result.message || "Error submitting booking.";
-      confirmationDiv.style.display = "block";
-      confirmationDiv.style.background = "#ff0000";
-      confirmationDiv.style.color = "#fff";
+    if (!response.ok) {
+      throw new Error(result.message || "Booking failed");
     }
+
+    confirmationDiv.textContent = "✅ Booking submitted successfully!";
+    confirmationDiv.style.color = "lime";
+
+    bookingForm.reset();
+    weeksInput.value = 1;
+    updateTotal();
 
   } catch (error) {
     console.error("Booking error:", error);
-    confirmationDiv.textContent = "Error submitting booking. Try again.";
-    confirmationDiv.style.display = "block";
-    confirmationDiv.style.background = "#ff0000";
-    confirmationDiv.style.color = "#fff";
+    confirmationDiv.textContent = "❌ Error submitting booking. Please try again.";
+    confirmationDiv.style.color = "red";
   }
 });

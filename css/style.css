@@ -10,6 +10,7 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Header */
 header {
   background: #111;
   padding: 20px 40px;
@@ -40,10 +41,12 @@ nav a:hover {
   text-shadow: 0 0 8px #0ff;
 }
 
+/* Sections */
 section {
   padding: 60px 20px;
 }
 
+/* Hero */
 #hero {
   text-align: center;
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -62,6 +65,7 @@ section {
   margin-bottom: 30px;
 }
 
+/* Buttons */
 .btn {
   background: #0ff;
   color: #111;
@@ -78,16 +82,24 @@ section {
   background: #0aa;
   color: #fff;
   transform: translateY(-2px);
+  animation: pulse 1s infinite;
 }
 
-.fleet-container {
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Fleet Cards */
+.car-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 }
 
-.fleet-card {
+.car {
   background: #222;
   padding: 20px;
   border-radius: 15px;
@@ -96,17 +108,18 @@ section {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.fleet-card:hover {
+.car:hover {
   transform: translateY(-10px);
-  box-shadow: 0 0 20px #0ff;
+  box-shadow: 0 0 25px #0ff, 0 0 50px #0ff;
 }
 
-.fleet-card img {
+.car img {
   width: 100%;
   border-radius: 10px;
   margin-bottom: 15px;
 }
 
+/* Booking Form */
 form {
   max-width: 500px;
   margin: auto;
@@ -137,12 +150,30 @@ input[type="checkbox"] {
   color: #0ff;
 }
 
-.popup {
-  display: none;
-  text-align: center;
+/* Booking Confirmation Popup */
+#confirmation {
   margin-top: 20px;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 10px;
+  display: none;
 }
 
+#confirmation.success {
+  display: block;
+  background: #0f0c29;
+  color: #0ff;
+  box-shadow: 0 0 15px #0ff;
+}
+
+#confirmation.error {
+  display: block;
+  background: #550000;
+  color: #ff4c4c;
+  box-shadow: 0 0 15px #ff4c4c;
+}
+
+/* FAQ & Terms */
 #faq, #terms {
   background: #111;
   border-radius: 15px;
@@ -158,10 +189,28 @@ input[type="checkbox"] {
   margin-bottom: 15px;
 }
 
+/* Footer */
 footer {
   background: #111;
   text-align: center;
   padding: 20px;
   margin-top: 40px;
   color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .car-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #hero {
+    padding: 60px 20px;
+  }
 }

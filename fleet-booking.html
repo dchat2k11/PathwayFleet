@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pathway Fleet LLC</title>
+  <title>Pathway Fleet LLC - Fleet & Booking</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -28,29 +29,27 @@
   <!-- Fleet Section -->
   <section id="fleet">
     <h2>Our Fleet</h2>
-    <div class="car-list">
-      <div class="car animate animate-left" data-car="Toyota Corolla 2020">
-        <img src="images/car1.jpg" alt="Toyota Corolla 2020">
-        <h3>Toyota Corolla 2020</h3>
-        <p>Weekly Rate: $250</p>
-        <button class="btn select-car">Book This Car</button>
+    <div class="fleet-container">
+      <div class="fleet-card" data-class="Economy">
+        <img src="images/economy.jpg" alt="Economy Class Car">
+        <h3>Economy</h3>
+        <p>Starting at $300/week</p>
+        <button class="btn select-car">Book Economy</button>
       </div>
 
-      <div class="car animate animate-right" data-car="Honda Civic 2019">
-        <img src="images/car2.jpg" alt="Honda Civic 2019">
-        <h3>Honda Civic 2019</h3>
-        <p>Weekly Rate: $240</p>
-        <button class="btn select-car">Book This Car</button>
+      <div class="fleet-card" data-class="Standard">
+        <img src="images/standard.jpg" alt="Standard Class Car">
+        <h3>Standard</h3>
+        <p>Starting at $350/week</p>
+        <button class="btn select-car">Book Standard</button>
       </div>
-
-      <!-- Add more cars here -->
     </div>
   </section>
 
   <!-- Booking Section -->
   <section id="booking">
     <h2>Book Your Car</h2>
-    <form id="bookingForm" class="animate animate-pop">
+    <form id="bookingForm">
       <label for="name">Full Name:</label>
       <input type="text" id="name" name="name" required>
 
@@ -60,11 +59,10 @@
       <label for="phone">Phone Number:</label>
       <input type="tel" id="phone" name="phone" required>
 
-      <label for="carSelect">Select Car:</label>
-      <select id="carSelect" name="car" required>
-        <option value="Toyota Corolla 2020">Toyota Corolla 2020</option>
-        <option value="Honda Civic 2019">Honda Civic 2019</option>
-        <!-- Add more cars here -->
+      <label for="carSelect">Vehicle Class:</label>
+      <select id="carSelect" name="vehicleClass" required>
+        <option value="Economy">Economy</option>
+        <option value="Standard">Standard</option>
       </select>
 
       <label for="startDate">Start Date:</label>
@@ -78,12 +76,30 @@
         Include Insurance ($50/week)
       </label>
 
-      <div id="totalCost" style="margin-top:10px;font-weight:bold;"></div>
+      <div id="totalCost"></div>
 
       <button type="submit" class="btn">Submit Booking</button>
     </form>
 
-    <div id="confirmation" style="margin-top:20px;font-weight:bold;"></div>
+    <div id="confirmation"></div>
+  </section>
+
+  <!-- FAQ & Terms -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <h3>Do I get unlimited mileage?</h3>
+      <p>Yes! All bookings include unlimited mileage.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I book multiple weeks?</h3>
+      <p>Yes, choose the number of weeks you need. Dates are blocked automatically when booked.</p>
+    </div>
+  </section>
+
+  <section id="terms">
+    <h2>Terms & Conditions</h2>
+    <p>Vehicles must meet rideshare requirements. Insurance is optional. All bookings require payment upfront.</p>
   </section>
 
   <!-- Footer -->
